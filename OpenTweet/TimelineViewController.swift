@@ -8,18 +8,48 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
-	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
-
+class TimelineViewController: UITableViewController {
+    
+    var tweets = [Tweet]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "Timeline"
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        loadTweets()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func loadTweets() {
+        Tweet.tweets() { tweets in
+            DispatchQueue.main.async {
+                self.tweets = tweets
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweets.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineViewCell", for: indexPath) as! TimelineViewCell
+        let tweet = self.tweets[indexPath.row]
+        cell.author.text = tweet.author
+        cell.date.text = tweet.date
+        cell.content.text = tweet.content
+        return cell
+    }
+    
 }
-
