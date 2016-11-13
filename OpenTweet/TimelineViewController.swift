@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TimelineViewController: UITableViewController {
+class TimelineViewController: UITableViewController, UIGestureRecognizerDelegate {
     
     var tweets = [Tweet]()
     
@@ -49,7 +49,49 @@ class TimelineViewController: UITableViewController {
         cell.author.text = tweet.author
         cell.date.text = tweet.date
         cell.content.attributedText = tweet.content
+        
+        let singleTap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedContent(gesture:)))
+        singleTap.delegate = self
+        cell.content.addGestureRecognizer(singleTap)
+        cell.content.tag = indexPath.row
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "TweetThreadViewController", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TweetThreadViewController", let destination = segue.destination as? TweetThreadViewController {
+            if let indexPath = tableView.indexPathForSelectedRow, indexPath.row < tweets.count {
+                destination.tweets = tweetThread(from: tweets[indexPath.row])
+            }
+        }
+    }
+    
+    func tweetThread(from tweet: Tweet) -> [Tweet] {
+        if let index = tweets.index(where: {$0.id == tweet.id}) {
+            if tweet.inReplyTo == nil {
+                let slice = tweets[index..<tweets.count]
+                return [Tweet](slice)
+            }
+            else {
+                for i in 0..<index {
+                    if tweets[i].id == tweet.inReplyTo {
+                        return [tweets[i], tweet]
+                    }
+                }
+            }
+        }
+        return [tweet]
+    }
+    
+    func tappedContent(gesture: UITapGestureRecognizer) -> Void {
+        if let contentView = gesture.view {
+            tableView.selectRow(at: IndexPath(row: contentView.tag, section: 0), animated: false, scrollPosition: UITableViewScrollPosition.none)
+            self.performSegue(withIdentifier: "TweetThreadViewController", sender: self)
+        }
     }
 
 }

@@ -15,6 +15,7 @@
 		009C4C811D9F0CD600F0BC6C /* OpenTweetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C4C801D9F0CD600F0BC6C /* OpenTweetTests.swift */; };
 		009C4C8C1D9F0CD600F0BC6C /* OpenTweetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C4C8B1D9F0CD600F0BC6C /* OpenTweetUITests.swift */; };
 		009C4C9B1D9F0D4100F0BC6C /* timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 009C4C9A1D9F0D4100F0BC6C /* timeline.json */; };
+		E455ECD01DD8E59F00C46826 /* TweetThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E455ECCF1DD8E59F00C46826 /* TweetThreadViewController.swift */; };
 		E45BDC7B1DD6D8640038C97B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45BDC781DD6D8640038C97B /* DataManager.swift */; };
 		E45BDC7C1DD6D8640038C97B /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45BDC791DD6D8640038C97B /* Tweet.swift */; };
 		E45BDC7D1DD6D8640038C97B /* TimelineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45BDC7A1DD6D8640038C97B /* TimelineViewCell.swift */; };
@@ -53,6 +54,7 @@
 		009C4C8D1D9F0CD600F0BC6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		009C4C9A1D9F0D4100F0BC6C /* timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timeline.json; sourceTree = "<group>"; };
 		009C4C9D1D9F104800F0BC6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E455ECCF1DD8E59F00C46826 /* TweetThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetThreadViewController.swift; sourceTree = "<group>"; };
 		E45BDC781DD6D8640038C97B /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E45BDC791DD6D8640038C97B /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		E45BDC7A1DD6D8640038C97B /* TimelineViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				E45BDC791DD6D8640038C97B /* Tweet.swift */,
 				E45BDC7A1DD6D8640038C97B /* TimelineViewCell.swift */,
 				009C4C6D1D9F0CD600F0BC6C /* TimelineViewController.swift */,
+				E455ECCF1DD8E59F00C46826 /* TweetThreadViewController.swift */,
 				009C4C6F1D9F0CD600F0BC6C /* Main.storyboard */,
 				009C4C721D9F0CD600F0BC6C /* Assets.xcassets */,
 				009C4C741D9F0CD600F0BC6C /* LaunchScreen.storyboard */,
@@ -287,6 +290,7 @@
 			files = (
 				E45BDC7D1DD6D8640038C97B /* TimelineViewCell.swift in Sources */,
 				009C4C6E1D9F0CD600F0BC6C /* TimelineViewController.swift in Sources */,
+				E455ECD01DD8E59F00C46826 /* TweetThreadViewController.swift in Sources */,
 				E45BDC7B1DD6D8640038C97B /* DataManager.swift in Sources */,
 				009C4C6C1D9F0CD600F0BC6C /* AppDelegate.swift in Sources */,
 				E45BDC7C1DD6D8640038C97B /* Tweet.swift in Sources */,

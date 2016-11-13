@@ -8,15 +8,14 @@
 
 import Foundation
 import UIKit
-import CoreFoundation
 
 struct Tweet {
     let id: String
     let author: String
     let content: NSAttributedString
     let date: String
-    var inReplyTo: String?
-    var avatar: String?
+    let inReplyTo: String?
+    let avatar: String?
 }
 
 extension Tweet {
@@ -32,13 +31,8 @@ extension Tweet {
         self.author = author
         self.content = content.highlight(searchStrings: ["@", "http"])
         self.date = dateString.shortDateString()
-        if let inReplyTo = json["inReplayTo"] as? String {
-            self.inReplyTo = inReplyTo
-        }
-        
-        if let avatar = json["avatar"] as? String {
-            self.avatar = avatar
-        }
+        self.inReplyTo = json["inReplyTo"] as? String
+        self.avatar = json["avatar"] as? String
     }
 }
 
