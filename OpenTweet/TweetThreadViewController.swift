@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TweetThreadViewController : UITableViewController {
+class TweetThreadViewController : UITableViewController, UIGestureRecognizerDelegate {
     
     var tweets = [Tweet]()
     
@@ -39,7 +39,39 @@ class TweetThreadViewController : UITableViewController {
         cell.author.text = tweet.author
         cell.date.text = tweet.date
         cell.content.attributedText = tweet.content
+        
+        let singleTap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedContent(gesture:)))
+        singleTap.delegate = self
+        cell.content.addGestureRecognizer(singleTap)
+        cell.content.tag = indexPath.row
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.contentView.shake()
+    }
+    
+    func tappedContent(gesture: UITapGestureRecognizer) -> Void {
+        if let contentView = gesture.view {
+            let cell = tableView.cellForRow(at: IndexPath(row: contentView.tag, section: 0))
+            cell?.contentView.shake()
+        }
+    }
+
+}
+
+extension UIView {
+    
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.06
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 10, y: self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 10, y: self.center.y))
+        self.layer.add(animation, forKey: "position")
     }
 
 }
