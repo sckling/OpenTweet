@@ -48,8 +48,8 @@ class TimelineViewController: UITableViewController {
         let tweet = self.tweets[indexPath.row]
         cell.author.text = tweet.author
         cell.date.text = tweet.date
-        cell.content.text = tweet.content
+        cell.content.attributedText = tweet.content
         return cell
     }
-    
+
 }
